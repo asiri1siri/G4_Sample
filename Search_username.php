@@ -65,7 +65,7 @@ $(document).ready(function(){
  $('#user_search').typeahead({
   source: function(query, result){
    $.ajax({
-    url:"fetch.php",
+    url:"fetch_user.php",
     method:"POST",
     data:{query:query},
     dataType:"json",
