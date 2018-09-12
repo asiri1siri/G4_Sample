@@ -1,0 +1,1 @@
+The MySQL queries found in the files are missing parameters; just input your own.
