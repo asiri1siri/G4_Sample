@@ -1,1 +1,3 @@
-The MySQL queries found in the files are missing parameters; just input your own.
+connectToDB contains the code snippet required to access the database.
+
+The variables inside enable/disable user can be considered as placeholders.
