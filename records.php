@@ -8,18 +8,18 @@ include("db.php");
 
 // creates the new/edit record form
 // since this form is used multiple times in this file, I have made it a function that is easily reusable
-function renderForm($first = '', $user ='', $error = '', $id = '')
+function renderForm($first = '', $user ='', $email = '', $enable = '', $error = '', $id = '')
 { ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
 <title>
-<?php if ($id != '') { echo "Edit Record"; } else { echo "New Record"; } ?>
+<?php if ($id != '') { echo "Edit User"; } else { echo "New User"; } ?>
 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
-<h1><?php if ($id != '') { echo "Edit Record"; } else { echo "New Record"; } ?></h1>
+<h1><?php if ($id != '') { echo "Edit User"; } else { echo "New User"; } ?></h1>
 <?php if ($error != '') {
 echo "<div style='padding:4px; border:1px solid red; color:red'>" . $error
 . "</div>";
@@ -34,8 +34,12 @@ echo "<div style='padding:4px; border:1px solid red; color:red'>" . $error
 
 <strong>First Name: *</strong> <input type="text" name="FirstName"
 value="<?php echo $first; ?>"/><br/>
-<strong>Username: *</strong> <input type="text" name="UserName"
-value="<?php echo $user; ?>"/>
+<strong>User Name: *</strong> <input type="text" name="UserName"
+value="<?php echo $user; ?>"/><br/>
+<strong>Email: *</strong> <input type="text" name="Email"
+value="<?php echo $email; ?>"/><br/>
+<strong>Enable: *</strong> <input type="text" name="Enable"
+value="<?php echo $enable; ?>"/>
 <p>* required</p>
 <input type="submit" name="submit" value="Submit" />
 </div>
@@ -65,21 +69,23 @@ if (is_numeric($_POST['id']))
 $id = $_POST['id'];
 $FirstName = htmlentities($_POST['FirstName'], ENT_QUOTES);
 $UserName = htmlentities($_POST['UserName'], ENT_QUOTES);
+$Email = htmlentities($_POST['Email'], ENT_QUOTES);
+$Enable = htmlentities($_POST['Enable'], ENT_QUOTES);
 
-// check that firstname and lastname are both not empty
-if ($FirstName == '' || $UserName == '')
+// check that firstname, username, and email are not empty
+if ($FirstName == '' || $UserName == '' || $Email == '' || $Enable == '')
 {
 // if they are empty, show an error message and display the form
 $error = 'ERROR: Please fill in all required fields!';
-renderForm($FirstName, $UserName, $error, $id);
+renderForm($FirstName, $UserName, $Email, $Enable, $error, $id);
 }
 else
 {
 // if everything is fine, update the record in the database
-if ($stmt = $mysqli->prepare("UPDATE Users SET FirstName = ?, UserName = ?
-WHERE id=?"))
+if ($stmt = $mysqli->prepare("UPDATE Users SET FirstName = ?, UserName = ?, Email = ?, Enable = ?
+WHERE id = ?"))
 {
-$stmt->bind_param("ssi", $FirstName, $UserName, $id);
+$stmt->bind_param("sssii", $FirstName, $UserName,  $Email, $Enable, $id);
 $stmt->execute();
 $stmt->close();
 }
@@ -114,11 +120,11 @@ if($stmt = $mysqli->prepare("SELECT * FROM Users WHERE id=?"))
 $stmt->bind_param("i", $id);
 $stmt->execute();
 
-$stmt->bind_result($id, $FirstName, $UserName, $Email);
+$stmt->bind_result($id, $FirstName, $UserName, $Email, $Enable);
 $stmt->fetch();
 
 // show the form
-renderForm($FirstName, $UserName, NULL, $id);
+renderForm($FirstName, $UserName, $Email, $Enable, NULL, $id);
 
 $stmt->close();
 }
@@ -140,7 +146,6 @@ else
 {
 renderForm();
 }
-
 
 // close the mysqli connection
 $mysqli->close();
