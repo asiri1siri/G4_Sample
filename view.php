@@ -8,7 +8,7 @@
 
 <h1>View Users</h1>
 
-<p><b>View All</b> 
+<p><b>View All Users</b> | <a href="items.php"> View All Items</a> </p> 
 
 <?php
 // connect to the database
