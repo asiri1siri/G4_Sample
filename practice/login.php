@@ -49,12 +49,12 @@ if (isset($_POST['submit']))
             }
             else
             {
-                echo 'No results to display!';
+                echo 'Error: Invalid login credentials. Please try again.';
             }
         }
         else
         {
-            echo 'Error: ' . $conn->error;
+            echo 'Error: Database connection error.';
         }
 }
 
