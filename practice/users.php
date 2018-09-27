@@ -1,14 +1,23 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<style>
+a.fixed {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 260px;
+}
+</style>
 <title>View Users</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
 
 <h1>View Users</h1>
+<a class="fixed" href= "logout.php" >Logout</a>
 
-<p><a href="index.php">View Index</a> | <b>View Users</b> | <a href="items.php">View Items</a> </p>
+<p><b>View Users</b> | <a href="items.php">View Items</a> </p>
 
 <?php
 // connect to db
@@ -17,7 +26,7 @@ include 'db_connection.php';
 $conn = OpenCon();
  
 // get records from db
-if ($result = $conn->query("SELECT * FROM users ORDER BY id"))
+if ($result = $conn->query("SELECT * FROM users ORDER BY ID"))
 {
 
 // display records if there are records to display
@@ -33,11 +42,11 @@ while ($row = $result->fetch_object())
 {
 // set up a row for each record
 echo "<tr>";
-echo "<td>" . $row->id . "</td>";
-echo "<td>" . $row->enabled . "</td>";
-echo "<td>" . $row->username . "</td>";
-echo "<td>" . $row->usertype . "</td>";
-echo "<td>" . $row->email . "</td>";
+echo "<td>" . $row->ID . "</td>";
+echo "<td>" . $row->ENABLED . "</td>";
+echo "<td>" . $row->USERNAME . "</td>";
+echo "<td>" . $row->USERTYPE . "</td>";
+echo "<td>" . $row->EMAIL . "</td>";
 
 // echo "<td><a href='records.php?id=" . $row->id . "'>Edit</a></td>";
 // echo "<td><a href='delete.php?id=" . $row->id . "'>Delete</a></td>";
