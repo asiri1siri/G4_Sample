@@ -4,10 +4,10 @@ if(isset($_POST["query"]))
  $connect = mysqli_connect('localhost', 'root', 'Blake200.', 'mini');
  $request = mysqli_real_escape_string($connect, $_POST["query"]);
  $query = "
-  SELECT * FROM contacts
+  SELECT * FROM items
   WHERE NAME LIKE '%".$request."%' 
-  OR USERNAME LIKE '%".$request."%' 
-  OR EMAIL LIKE '%".$request."%'
+  OR DESCRIPTION LIKE '%".$request."%' 
+  OR ITEMTYPE LIKE '%".$request."%'
  ";
  $result = mysqli_query($connect, $query);
  $data =array();
@@ -16,8 +16,8 @@ if(isset($_POST["query"]))
   <table class="table table-bordered table-striped">
    <tr>
     <th>Name</th>
-    <th>UserName</th>
-    <th>Email</th>
+    <th>DESCRIPTION</th>
+    <th>ITEM TYPE</th>
    </tr>
   ';
  if(mysqli_num_rows($result) > 0)
@@ -25,13 +25,13 @@ if(isset($_POST["query"]))
   while($row = mysqli_fetch_array($result))
   {
    $data[] = $row["NAME"];
-   $data[] = $row["USERNAME"];
-   $data[] = $row["EMAIL"];
+   $data[] = $row["DESCRIPTION"];
+   $data[] = $row["ITEMTYPE"];
    $html .= '
    <tr>
     <td>'.$row["NAME"].'</td>
-    <td>'.$row["USERNAME"].'</td>
-    <td>'.$row["EMAIL"].'</td>
+    <td>'.$row["DESCRIPTION"].'</td>
+    <td>'.$row["ITEMTYPE"].'</td>
    </tr>
    ';
   }

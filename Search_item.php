@@ -33,12 +33,13 @@
               <br/> 
    			  <h3 allign="center">Welcome User!</h3>
    			  <br />
+			  <!-- Not sure if i should add a button... -->
    			  <div id="search_area">
-    		    	<input type="text" name="user_search" id="user_search" class="form-control input-lg" autocomplete="on" placeholder="Search User" />
+    		    	<input type="text" name="user_search" id="item_search" class="form-control input-lg" autocomplete="on" placeholder="Search Items" />
    			  </div>
 				 <br />
    				 <br />
-   			  <div id="user_data"></div>
+   			  <div id="item_data"></div>
 			</div>
     </body>
 </html>
@@ -52,20 +53,20 @@ $(document).ready(function(){
  function load_data(query, typehead_search = 'yes')
  {
   $.ajax({
-   url:"fetch_user.php",
+   url:"fetch_item.php",
    method:"POST",
    data:{query:query, typehead_search:typehead_search},
    success:function(data)
    {
-    $('#user_data').html(data);
+    $('#item_data').html(data);
    }
   });
  }
  
- $('#user_search').typeahead({
+ $('#item_search').typeahead({
   source: function(query, result){
    $.ajax({
-    url:"fetch_user.php",
+    url:"fetch_item.php",
     method:"POST",
     data:{query:query},
     dataType:"json",
