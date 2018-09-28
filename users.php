@@ -48,7 +48,7 @@ echo "<td>" . $row->NAME . "</td>";
 echo "<td>" . $row->USERNAME . "</td>";
 echo "<td>" . $row->USERTYPE . "</td>";
 echo "<td>" . $row->EMAIL . "</td>";
-
+echo "<td><a href='edit_user.php?id=" . $row->ID . "'>Edit</a></td>";
 // echo "<td><a href='records.php?id=" . $row->id . "'>Edit</a></td>";
 // echo "<td><a href='delete.php?id=" . $row->id . "'>Delete</a></td>";
 echo "</tr>";
