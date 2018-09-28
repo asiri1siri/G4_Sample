@@ -18,6 +18,9 @@ a.fixed {
 <a class="fixed" href= "logout.php" >Logout</a>
 
 <p><b>View Users</b> | <a href="items.php">View Items</a> </p>
+<input type="text" id="input" onkeyup="myFunction()" placeholder="Search ">
+</br>
+</br>
 
 <?php
 // connect to db
@@ -33,7 +36,7 @@ if ($result = $conn->query("SELECT * FROM users ORDER BY ID"))
 if ($result->num_rows > 0)
 {
 // display records in a table
-echo "<table border='1' cellpadding='10'>";
+echo "<table border='1' cellpadding='10' id='table'>";
 
 // set table headers
 echo "<tr><th>ID</th><th>Enabled</th><th>Name</th><th>Username</th><th>User Type</th><th>Email</th><th></th></tr>";
@@ -75,3 +78,26 @@ CloseCon($conn);
 
 </body>
 </html>
+
+<script>
+//@Mario
+// simple general search box 
+function myFunction() {
+  // currently only works with ID but it can work other elements if you add more rows dont recommend adding more rows 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("input");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>
