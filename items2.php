@@ -17,7 +17,7 @@ a.fixed {
 <h1>View Items</h1>
 <a class="fixed" href= "logout.php" >Logout</a>
 
-<p><a href = "users.php"> View Users</a> | <b>View Items</b> </p>
+<p> <b>View Items</b> </p>
 
 <?php
 // connect to db
