@@ -5,11 +5,12 @@
     $conn = OpenCon();
 
     //function to write the html page
-    function writeForm($errorSameItem = '', $errorNoItemsSelected = '', $errorNoContainerSelected = '')
+    function writeForm($numItems, $numContainers, $errorSameItem = '', $errorNoItemsSelected = '', $errorNoContainerSelected = '')
     {
         $conn = OpenCon();
 
-        ?>
+        if ($numItems > 0 && $numContainers > 0)
+        {?>
             <!DOCTYPE html>
             <html>
             <head>
@@ -21,6 +22,10 @@
                 <div class="container">
                 <h2>Move Items</h2>
                 <form action='' method='post'>
+                    <?php
+                        echo "<input type='hidden' name='numItems' value='". $numItems ."' />";
+                        echo "<input type='hidden' name='numContainers' value='". $numContainers ."' />";
+                    ?>
                     Select Items To Move<br>
                     <table class="table table-striped">
                         <tr><th>Select</th><th>ID</th><th>Name</th><th>Description</th></tr>
@@ -81,7 +86,53 @@
                 </form>
             </body>
             </html>
-        <?php
+        <?php }
+
+        else if ($numItems == 0)
+        {?>
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <title>Move Items</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+            </head>
+            <body>
+            <div class="container">
+                <p>Ain't no items in here, chief.</p><br>
+                <?php
+                    if (isset($_GET['admin']))
+                    echo "<a href='/practice/items.php'>Back</a>";
+                    else
+                    echo "<a href='/practice/items2.php'>Back</a>";
+                ?>
+            </div>
+            </body>
+            </html>
+        <?php }
+
+        else
+        {?>
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <title>Move Items</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+            </head>
+            <body>
+            <div class="container">
+                <p>Ain't no containers in here, chief.</p><br>
+                <?php
+                    if (isset($_GET['admin']))
+                    echo "<a href='/practice/items.php'>Back</a>";
+                    else
+                    echo "<a href='/practice/items2.php'>Back</a>";
+                ?>
+            </div>
+            </body>
+            </html>
+        <?php }
     }
 
     //if user submitted info
@@ -119,7 +170,7 @@
         //if error is apparent, rewrite page
         if ($errorSameItem != '' || $errorNoItemsSelected != '' || $errorNoContainerSelected != '')
         {
-            writeForm($errorSameItem, $errorNoItemsSelected, $errorNoContainerSelected);
+            writeForm($_POST['numItems'], $_POST['numContainers'], $errorSameItem, $errorNoItemsSelected, $errorNoContainerSelected);
         }
         else
         {
@@ -140,7 +191,12 @@
     //else they must be new; write the page
     else
     {
-        writeForm();
+        $items = $conn->query('SELECT ID, NAME, DESCRIPTION FROM items where deleted = false');
+        $containers = $conn->query('SELECT ID, NAME, DESCRIPTION FROM items where is_container = true and deleted = false');
+
+        $numItems = $items->num_rows;
+        $numContainers = $containers->num_rows;
+        writeForm($numItems, $numContainers);
     }
 
 ?>
