@@ -31,7 +31,7 @@
                         <tr><th>Select</th><th>ID</th><th>Name</th><th>Description</th></tr>
                         <?php
                             //list all enabled items
-                            $items = $conn->query('SELECT ID, NAME, DESCRIPTION FROM items where deleted = false');
+                            $items = $conn->query('SELECT ID, NAME, DESCRIPTION FROM items where deleted = false and parent_id = 0');
 
                                 foreach ($items as $row)
                                 {
@@ -191,7 +191,7 @@
     //else they must be new; write the page
     else
     {
-        $items = $conn->query('SELECT ID, NAME, DESCRIPTION FROM items where deleted = false');
+        $items = $conn->query('SELECT ID, NAME, DESCRIPTION FROM items where deleted = false and parent_id = 0');
         $containers = $conn->query('SELECT ID, NAME, DESCRIPTION FROM items where is_container = true and deleted = false');
 
         $numItems = $items->num_rows;
