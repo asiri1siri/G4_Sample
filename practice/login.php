@@ -28,7 +28,7 @@ if (isset($_POST['submit']))
         $admin = 'User';
     }
 
-        if ($result = $conn->query("SELECT * FROM users WHERE USERNAME = '$user' AND USERTYPE = '$admin'"))
+        if ($result = $conn->query("SELECT * FROM users WHERE USERNAME = '$user' AND USERTYPE = '$admin' AND ENABLED = '1'"))
         {
             // display records if there are records to display
             if ($result->num_rows > 0)
