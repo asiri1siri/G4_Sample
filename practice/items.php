@@ -65,6 +65,7 @@ echo "</table>";
 //George's Code: links to move items page
 echo "<a href='MoveItemsInto.php?admin=1'>Move items into a container</a><br>";
 echo "<a href='MoveItemsOut.php?admin=1'>Move items out of a container</a>";
+
 }
 // if there are no records in the database, display an alert message
 else

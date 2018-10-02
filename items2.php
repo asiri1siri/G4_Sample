@@ -55,7 +55,6 @@ echo "<td>" . $row->ENTERED . "</td>";
 echo "<td>" . $row->UPDATED . "</td>";
 echo "<td>" . $row->PARENT_ID . "</td>";
 echo "<td>" . $row->IS_CONTAINER . "</td>";
-
 echo "<td><a href='edit_item.php?id=" . $row->ID . "'>Edit</a></td>";
 // echo "<td><a href='records.php?id=" . $row->id . "'>Edit</a></td>";
 // echo "<td><a href='delete.php?id=" . $row->id . "'>Delete</a></td>";
@@ -63,10 +62,6 @@ echo "</tr>";
 }
 
 echo "</table>";
-//George's Code: links to move items page
-echo "<a href='MoveItemsInto.php'>Move items into a container</a><br>";
-echo "<a href='MoveItemsOut.php'>Move items out of a container</a>";
-
 }
 // if there are no records in the database, display an alert message
 else

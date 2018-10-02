@@ -9,16 +9,16 @@ a.fixed {
     width: 260px;
 }
 </style>
-<title>View Items</title>
+<title>View Users</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
 
-<h1>View Items</h1>
+<h1>View Users</h1>
 <a class="fixed" href= "logout.php" >Logout</a>
 
-<p> <b>View Items</b> </p>
-<input type="text" id="input" onkeyup="myFunction()" placeholder="Search">
+<p><b>View Users</b> | <a href="items.php">View Items</a> </p>
+<input type="text" id="input" onkeyup="myFunction()" placeholder="Search ">
 </br>
 </br>
 
@@ -29,7 +29,7 @@ include 'db_connection.php';
 $conn = OpenCon();
  
 // get records from db
-if ($result = $conn->query("SELECT * FROM items ORDER BY id"))
+if ($result = $conn->query("SELECT * FROM users ORDER BY ID"))
 {
 
 // display records if there are records to display
@@ -39,34 +39,25 @@ if ($result->num_rows > 0)
 echo "<table border='1' cellpadding='10' id='table'>";
 
 // set table headers
-echo "<tr><th>ID</th><th>Hidden</th><th>Name</th><th>Description</th><th>Item Type</th><th>Condition</th><th>Entered</th><th>Updated</th><th>Parent ID</th><th>Is Container</th></tr>";
+echo "<tr><th>ID</th><th>Enabled</th><th>Name</th><th>Username</th><th>User Type</th><th>Email</th><th></th></tr>";
 
 while ($row = $result->fetch_object())
 {
 // set up a row for each record
 echo "<tr>";
 echo "<td>" . $row->ID . "</td>";
-echo "<td>" . $row->DELETED . "</td>";
+echo "<td>" . $row->ENABLED . "</td>";
 echo "<td>" . $row->NAME . "</td>";
-echo "<td>" . $row->DESCRIPTION . "</td>";
-echo "<td>" . $row->ITEMTYPE . "</td>";
-echo "<td>" . $row->COND . "</td>";
-echo "<td>" . $row->ENTERED . "</td>";
-echo "<td>" . $row->UPDATED . "</td>";
-echo "<td>" . $row->PARENT_ID . "</td>";
-echo "<td>" . $row->IS_CONTAINER . "</td>";
-
-echo "<td><a href='edit_item.php?id=" . $row->ID . "'>Edit</a></td>";
+echo "<td>" . $row->USERNAME . "</td>";
+echo "<td>" . $row->USERTYPE . "</td>";
+echo "<td>" . $row->EMAIL . "</td>";
+echo "<td><a href='edit_user.php?id=" . $row->ID . "'>Edit</a></td>";
 // echo "<td><a href='records.php?id=" . $row->id . "'>Edit</a></td>";
 // echo "<td><a href='delete.php?id=" . $row->id . "'>Delete</a></td>";
 echo "</tr>";
 }
 
 echo "</table>";
-//George's Code: links to move items page
-echo "<a href='MoveItemsInto.php'>Move items into a container</a><br>";
-echo "<a href='MoveItemsOut.php'>Move items out of a container</a>";
-
 }
 // if there are no records in the database, display an alert message
 else
