@@ -28,7 +28,7 @@ if (isset($_POST['submit']))
         $admin = 'User';
     }
 
-        if ($result = $conn->query("SELECT * FROM users WHERE USERNAME = '$user' AND USERTYPE = '$admin'"))
+        if ($result = $conn->query("SELECT * FROM users WHERE USERNAME = '$user' AND USERTYPE = '$admin' AND ENABLED = '1'"))
         {
             // display records if there are records to display
             if ($result->num_rows > 0)
@@ -37,13 +37,13 @@ if (isset($_POST['submit']))
                 {
                     //instead of just redirecting we can use sessions here, but admin page would 
                     //still be viewable just by typing in url, so is it necessary?
-                    header("Location: /practice/users.php");
+                    header("Location: /users.php");
                 }
                 else 
                 {  
                     //instead of just redirecting we can use sessions here, but admin page would 
                     //still be viewable just by typing in url, so is it necessary?
-                    header("Location: /practice/items2.php");
+                    header("Location: /items2.php");
                     exit;
                 }
             }
