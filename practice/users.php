@@ -19,6 +19,7 @@ a.fixed {
 <a class="fixed" href= "logout.php" >Logout</a>
 
 <p><b>View Users</b> | <a href="items.php">View Items</a> </p>
+
 <input type="text" id="input" onkeyup="myFunction()" placeholder="Search by ID">
 </br>
 </br>
@@ -77,12 +78,12 @@ CloseCon($conn);
 
 ?>
 
+
 <!-- Add Button -->
 <br>
 <form>
 <input type="button" value="Add User" onclick="window.location.href='/G4/practice/add_user.php'" />
 </form>
-
 </body>
 </html>
 

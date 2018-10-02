@@ -65,10 +65,9 @@
                         ?>
                     </table>
                     <button type='submit' class="btn btn-success" NAME='submit'>Submit</button>
-
                      <!-- ASIRI - Back Button -->
                     <input type="button" value="Back" onclick="window.location.href='/G4/practice/items.php'" />
-                    
+
                     <p>
                     <?php
                     //echo errors
@@ -189,6 +188,7 @@
             header("Location: /G4/practice/items.php");
             else
             header("Location: /G4/practice/items2.php");
+
         }
     }
 

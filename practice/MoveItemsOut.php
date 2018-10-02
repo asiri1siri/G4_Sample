@@ -46,10 +46,8 @@
                     ?>
                 </table><br>
                 <button type='submit' class="btn btn-success" NAME='submit'>Submit</button>
-
                 <!-- ASIRI - Back Button -->
                 <input type="button" value="Back" onclick="window.location.href='/G4/practice/items.php'" />
-
                 </div>
                 </form>
             </body>
