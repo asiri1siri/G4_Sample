@@ -19,8 +19,10 @@ a.fixed {
 <a class="fixed" href= "logout.php" >Logout</a>
 
 <p><b>View Users</b> | <a href="items.php">View Items</a> </p>
-
-<input type="text" id="input" onkeyup="myFunction()" placeholder="Search by ID">
+<input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search ">
+<input type="radio" name="input" value="1"> ID
+<input type="radio" name="input" value="3"> UserName
+<input type="radio" name="input" value="5"> Email
 </br>
 </br>
 
@@ -78,12 +80,12 @@ CloseCon($conn);
 
 ?>
 
-
 <!-- Add Button -->
 <br>
 <form>
 <input type="button" value="Add User" onclick="window.location.href='/G4/practice/add_user.php'" />
 </form>
+
 </body>
 </html>
 
@@ -91,21 +93,30 @@ CloseCon($conn);
 //@Mario
 // simple general search box 
 function myFunction() {
-  // currently only works with ID but it can work other elements if you add more rows dont recommend adding more rows 
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("input");
+ 
+  var input, filter, table, tr, td, i, index, radios;
+  input = document.getElementById("search_input");
   filter = input.value.toUpperCase();
   table = document.getElementById("table");
   tr = table.getElementsByTagName("tr");
+  
+  //check which value is selected to get the index for search
+radios = document.getElementsByTagName('input');
+for (var i = 0; i < radios.length; i++) {
+    if (radios[i].type === 'radio' && radios[i].checked) {
+      // should there be a default value?
+        index = radios[i].value;       
+    }
+}
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[index];
     if (td) {
       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
       }
-    } 
+    }
   }
 }
 </script>
