@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<link rel="stylesheet" href="css.css">
 <style>
 a.fixed {
     position: fixed;
@@ -19,7 +20,7 @@ a.fixed {
 
 <p><b>View Users</b> | <a href="items.php">View Items</a> </p>
 
-<input type="text" id="input" onkeyup="myFunction()" placeholder="Search ">
+<input type="text" id="input" onkeyup="myFunction()" placeholder="Search by ID">
 </br>
 </br>
 
@@ -40,8 +41,7 @@ if ($result->num_rows > 0)
 echo "<table border='1' cellpadding='10' id='table'>";
 
 // set table headers
-echo "<tr><th>ID</th><th>Enabled</th><th>Username</th><th>User Type</th><th>Email</th></tr>";
-
+echo "<tr><th>ID</th><th>Enabled</th><th>Name</th><th>Username</th><th>User Type</th><th>Email</th><th>Actions</th></tr>";
 
 while ($row = $result->fetch_object())
 {
@@ -49,14 +49,14 @@ while ($row = $result->fetch_object())
 echo "<tr>";
 echo "<td>" . $row->ID . "</td>";
 echo "<td>" . $row->ENABLED . "</td>";
+echo "<td>" . $row->NAME . "</td>";
 echo "<td>" . $row->USERNAME . "</td>";
 echo "<td>" . $row->USERTYPE . "</td>";
 echo "<td>" . $row->EMAIL . "</td>";
-echo "</tr>";
-
+echo "<td><a href='edit_user.php?id=" . $row->ID . "'>Edit</a></td>";
 // echo "<td><a href='records.php?id=" . $row->id . "'>Edit</a></td>";
 // echo "<td><a href='delete.php?id=" . $row->id . "'>Delete</a></td>";
-//
+echo "</tr>";
 }
 
 echo "</table>";
@@ -78,6 +78,12 @@ CloseCon($conn);
 
 ?>
 
+
+<!-- Add Button -->
+<br>
+<form>
+<input type="button" value="Add User" onclick="window.location.href='/G4/practice/add_user.php'" />
+</form>
 </body>
 </html>
 
@@ -91,7 +97,6 @@ function myFunction() {
   filter = input.value.toUpperCase();
   table = document.getElementById("table");
   tr = table.getElementsByTagName("tr");
-
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
     if (td) {
@@ -104,4 +109,3 @@ function myFunction() {
   }
 }
 </script>
-

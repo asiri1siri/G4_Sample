@@ -37,13 +37,13 @@ if (isset($_POST['submit']))
                 {
                     //instead of just redirecting we can use sessions here, but admin page would 
                     //still be viewable just by typing in url, so is it necessary?
-                    header("Location: /users.php");
+                    header("Location: /G4/practice/users.php");
                 }
                 else 
                 {  
                     //instead of just redirecting we can use sessions here, but admin page would 
                     //still be viewable just by typing in url, so is it necessary?
-                    header("Location: /items2.php");
+                    header("Location: /G4/practice/items2.php");
                     exit;
                 }
             }
@@ -63,6 +63,7 @@ CloseCon($conn);
 ?>
 
 <html>
+<link rel="stylesheet" href="css.css">
 <form method = 'post' action = '?'>
   <fieldset>
     <legend><h1>Login</h1></legend>

@@ -15,6 +15,7 @@ function renderForm($hidden = '', $name = '', $description ='', $item = '', $sta
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head> 
+<link rel="stylesheet" href="css.css">
 <title>
 <?php if ($id != '') { echo "Edit Items"; } else { echo "error"; } ?>
 </title>
@@ -155,7 +156,7 @@ echo "Error: could not prepare SQL statement";
 // if the 'id' value is not valid, redirect the user back to the view.php page
 else
 {
-header("Location: itmes.php");
+header("Location: /G4/practice/itmes.php");
 }
 }
 }

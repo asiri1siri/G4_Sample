@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<link rel="stylesheet" href="css.css">
 <style>
 a.fixed {
     position: fixed;
@@ -18,7 +19,7 @@ a.fixed {
 <a class="fixed" href= "logout.php" >Logout</a>
 
 <p><a href = "users.php"> View Users</a> | <b>View Items</b> </p>
-<input type="text" id="input" onkeyup="myFunction()" placeholder="Search ">
+<input type="text" id="input" onkeyup="myFunction()" placeholder="Search by ID">
 </br>
 </br>
 
@@ -39,8 +40,7 @@ if ($result->num_rows > 0)
 echo "<table border='1' cellpadding='10' id='table'>";
 
 // set table headers
-echo "<tr><th>ID</th><th>Hidden</th><th>Name</th><th>Description</th><th>Item Type</th><th>Condition</th><th>Entered</th><th>Updated</th><th>Parent ID</th><th>Is Container</th></tr>";
-
+echo "<tr><th>ID</th><th>Hidden</th><th>Name</th><th>Description</th><th>Item Type</th><th>Condition</th><th>Entered</th><th>Updated</th><th>Parent ID</th><th>Is Container</th><th>Actions</th></tr>";
 while ($row = $result->fetch_object())
 {
 // set up a row for each record
@@ -62,16 +62,19 @@ echo "</tr>";
 }
 
 echo "</table>";
+  
 //George's Code: links to move items page
+echo "<br>";
 echo "<a href='MoveItemsInto.php?admin=1'>Move items into a container</a><br>";
 echo "<a href='MoveItemsOut.php?admin=1'>Move items out of a container</a>";
+echo "<br>";
+}
 
-}
 // if there are no records in the database, display an alert message
-else
-{
-echo "No results to display!";
-}
+  else
+  {
+  echo "No results to display!";
+  }
 }
 
 // show an error if there is an issue with the database query
@@ -83,6 +86,12 @@ echo "Error: " . $conn->error;
 CloseCon($conn);
 
 ?>
+<!-- ASIRI -->
+<!-- Add Button -->
+<br>
+<form>
+<input type="button" value="Add Item" onclick="window.location.href='/G4/practice/add_item.php'" />
+</form>
 
 </body>
 </html>

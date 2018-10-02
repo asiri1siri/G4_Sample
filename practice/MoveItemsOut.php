@@ -46,6 +46,8 @@
                     ?>
                 </table><br>
                 <button type='submit' class="btn btn-success" NAME='submit'>Submit</button>
+                <!-- ASIRI - Back Button -->
+                <input type="button" value="Back" onclick="window.location.href='/G4/practice/items.php'" />
                 </div>
                 </form>
             </body>
@@ -66,9 +68,9 @@
                 <p>Ain't nothin' in here, chief.</p><br>
                 <?php
                     if (isset($_GET['admin']))
-                    echo "<a href='/practice/items.php'>Back</a>";
+                    echo "<a href='/G4/practice/items.php'>Back</a>";
                     else
-                    echo "<a href='/practice/items2.php'>Back</a>";
+                    echo "<a href='/G4/practice/items2.php'>Back</a>";
                 ?>
             </div>
             </body>
@@ -87,9 +89,9 @@
         }
 
         if (isset($_GET['admin']))
-        header("Location: /practice/items.php");
+        header("Location: /G4/practice/items.php");
         else
-        header("Location: /practice/items2.php");
+        header("Location: /G4/practice/items2.php");
     }
     //else they must be new; write the page
     else
