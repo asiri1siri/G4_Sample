@@ -1,4 +1,3 @@
-PLEASE PLACE THIS FOLDER 'practice' INSIDE FOLDER NAMED 'G4' THEN INSIDE 'xampp/htdocs'
+PLEASE PLACE THIS FOLDER 'practice' INSIDE A FOLDER NAMED 'G4' THEN INSIDE 'xampp/htdocs'
 
-xampp/htdocs/G4/practice
-
+--> xampp/htdocs/G4/practice
