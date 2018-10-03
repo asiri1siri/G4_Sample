@@ -20,7 +20,7 @@ a.fixed {
 
 <p><b>View Users</b> | <a href="items.php">View Items</a> </p>
 <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search ">
-<input type="radio" name="input" value="1"> ID
+<input type="radio" name="input" value="2"> Name
 <input type="radio" name="input" value="3"> UserName
 <input type="radio" name="input" value="5"> Email
 </br>
